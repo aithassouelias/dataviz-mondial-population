@@ -2,116 +2,30 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Tableau de bord</title>
+		<meta http-equiv="refresh" content="3">
+        <title>World Population</title>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <link href= "css/style.css" rel="stylesheet">
     </head>
     <body>
-        <div class="container-fluid">
-			<div class="text-center">
-				<hr>
-				<h1>Application de démo</h1>
-				<hr>
-			</div>
-			<div class="row">
-				<div class="col-12">
-					<div class="card mx-3 mt-3">
-						<div class="card-header">
-							<ul class="nav nav-tabs nav-fill card-header-tabs">
-								<li class="nav-item">
-									<button class="nav-link active" id="tab-1" data-bs-toggle="tab" data-bs-target="#tab-pane-1" type="button" role="tab">
-										Onglet 1
-									</button>
-								</li>
-								<li class="nav-item">
-									<button class="nav-link" id="tab-2" data-bs-toggle="tab" data-bs-target="#tab-pane-2" type="button" role="tab">
-										Onglet 2
-									</button>
-								</li>
-								<li class="nav-item">
-									<button class="nav-link" id="tab-3" data-bs-toggle="tab" data-bs-target="#tab-pane-3" type="button" role="tab">
-										Onglet 3
-									</button>
-								</li>
-							</ul>
-						</div>
-						<div class="card-body">
-							<div class="tab-content" id="myTabContent">
-								<div class="tab-pane fade show active" id="tab-pane-1" role="tabpanel">
-									<div id="test" class="col-6 mx-auto bg-danger h1 ma-carte">
-										Test
-									</div>
+		<div class="navbar">
+			<h2>World Population</h2>
+			<a href="index.html">Accueil</a>
 
-									<div class="card col-6 mx-auto ma-carte">
-										<div class="card-body" id="test2">
-											This is a test
-										</div>
-									</div>
-								</div>
-								<div class="tab-pane fade" id="tab-pane-2" role="tabpanel">
-									<div class="container-fluid">
-										<div class="row">
-											<div class="col-6 text-justify">
-												<p>
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod pulvinar urna, eu molestie tortor pretium eget. Pellentesque cursus felis eget lectus fringilla fringilla. Nunc eu neque ornare, faucibus leo eu, fringilla nunc. Phasellus in consequat nunc. Pellentesque lobortis dolor nec erat rutrum sollicitudin sed id tellus. Suspendisse potenti. Fusce lacus ipsum, vehicula sit amet faucibus et, porttitor sit amet magna. Praesent sit amet consectetur nunc. Sed vitae posuere nisi. Pellentesque pharetra purus nunc, ac facilisis ante sodales non. In a leo et lectus semper tempus at sit amet dui. Praesent dui ipsum, pretium sit amet ornare nec, porttitor a quam. Ut elementum dolor ut cursus euismod.
-												</p>
-												<p>
-													Aenean ac augue in ligula aliquam lacinia convallis et enim. Nulla sit amet dignissim sem, eget lobortis mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sit amet dui mattis, maximus urna ac, porttitor justo. Cras ornare pretium bibendum. Nullam maximus libero id tortor suscipit pellentesque. Ut quis placerat lacus. Quisque orci mi, fermentum ut vehicula id, mattis at leo.
-												</p>
-												<p>
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sodales aliquet mattis. Duis eget vestibulum ante, in ultrices eros. In hac habitasse platea dictumst. Nullam laoreet orci sit amet imperdiet pharetra. Duis quis justo a purus viverra ultrices id at mauris. Proin non felis vel leo pellentesque faucibus at nec tortor. Donec non mauris id justo luctus semper ac eu purus. Sed luctus ex quis placerat pulvinar. Nullam sagittis magna eu ante tincidunt imperdiet ut ut enim. Fusce dignissim hendrerit sem, vel interdum tellus commodo at. Aliquam tincidunt semper libero, ut gravida risus congue in. Pellentesque tempor sed risus at volutpat. Donec nec metus sit amet eros mattis egestas.
-												</p>
-											</div>
-											<div class="col-6">
-												<canvas id="myChart"></canvas>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="tab-pane fade" id="tab-pane-3" role="tabpanel">
-									<div class="col-6 mx-auto">
-										<canvas id="myChart2"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer text-body-secondary text-center">
-							AIT HASSOU Elias | AOUDIA Nabil | BELKAID Wissam | Science des Données | 2023
-						</div>
-					</div>
-				</div>
-			</div>
+			<select name="liste">
+				<option>Graphiques</option>
+				<option value="dashboard_deces.html">Décès</option>
+				<option value="dashboard_naissance.html">Naissance</option>
+				<option value="#">Global</option>   
+			</select>
 		</div>
 
-
-
-
-
-
-
-
-        <!-- Ma partie -->
-
-        <h1 class="col-6 mx-auto"> Tableau de bord </h1>
-
-        <!-- Emplacement pour le graphique créé avec JS (id = mychart)-->
-        <div class="col-6 mx-auto">
-            <canvas id="myChart"></canvas>
-        </div>
-        
-        <div class="col-6 mx-auto">
-            <canvas id="myChart2"></canvas>
-        </div>
-
-        <!-- Script Bootstrap-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-        
-        <!-- Script ChartJS-->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        
-        <!-- Lien fichier script.js-->
-        <script src="js/script.js"></script>
-
+		<div class="card" style="width: 18rem;">
+			<div class="card-body">
+				<h5 class="card-title">Accueil</h5>
+				<p class="card-text">Présentation du texte du projet</p>
+			</div>
+		</div>
     </body>
 </html>
