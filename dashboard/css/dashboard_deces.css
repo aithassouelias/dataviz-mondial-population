@@ -1,0 +1,57 @@
+body{
+    background-color: #F5F5F5;
+}
+
+.navbar{
+    background-color: white;
+    height: 60px;
+}
+
+.navbar-accueil{
+    margin-left: 87%;
+}
+
+.KPI{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardKPI {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.card p{
+    font-size: 1.2rem;
+}
+
+.card h3{
+    font-size: 2.5rem;
+}
+
+footer{
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+img{
+    width: 20px;
+    height: 20px;
+}
+
+.cardfiltre{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+select{
+    border: white;
+}
+
+a:link{
+    text-decoration: none;
+}
