@@ -2,45 +2,63 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-		<meta http-equiv="refresh" content="3">
+		<meta http-equiv="refresh" content="15">
         <title>Dashboard total</title>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <link href= "css/style.css" rel="stylesheet">
+        <link href= "css/dashboard_total.css" rel="stylesheet">
     </head>
     <body>
 		<div class="navbar">
-			<h2>World Population</h2>
-			<a href="index.html">Accueil</a>
+			<div class="navbar-accueil" >
+				<a href="index.html">Accueil</a>
 
-			<select name="liste">
-				<option>Graphiques</option>
-				<option value="page1.html">Décès</option>
-				<option value="page2.html">Naissance</option>
-				<option value="page3.html">Global</option>   
-			</select>
-		</div>
-
-		<div class="card 1" style="width: 18rem;">
-			<div class="card-body">
-				<h5 class="card-title">Nombre total de naissance</h5>
-				<h3 class="card-title">100 000</h5>
+				<select name="liste-dashboard" onChange="location.href=''+this.options[this.selectedIndex].value+'.html';">
+					<option>Tableau de bord</option>
+					<option value="dashboard_deces">Décès</option>
+					<option value="dashboard_naissance">Naissance</option>
+					<option value="dashboard_total">Total</option>   
+				</select>
 			</div>
 		</div>
 
-        <div class="card 2" style="width: 18rem;">
+		<div class="card cardfiltre" style="width: 10rem;">
 			<div class="card-body">
-				<h5 class="card-title">Nombre total de décès</h5>
-				<h3 class="card-title">25 000</h5>
+				<img src="image/filtre.png">
+				<select name="liste-continent">
+					<option>Mondial</option>
+					<option value="#">Afrique</option>
+					<option value="#">Amérique</option>
+					<option value="#">Asie</option>
+					<option value="#">Europe</option>
+					<option value="#">Océanie</option>
+				</select>
 			</div>
 		</div>
 
-        <div class="card 3" style="width: 18rem;">
-			<div class="card-body">
-				<h5 class="card-title">Solde naturel</h5>
-				<h3 class="card-title">75 000</h5>
+		<div class="KPI">
+			<div class="card cardKPI" style="width: 18rem;">
+				<div class="card-body">
+					<p class="card-title">Nombre total de naissance</p>
+					<h3 class="card-title">100 000</h3>
+				</div>
+			</div>
+
+			<div class="card cardKPI" style="width: 18rem;">
+				<div class="card-body">
+					<p class="card-title">Nombre total de décès</p>
+					<h3 class="card-title">25 000</h3>
+				</div>
+			</div>
+
+			<div class="card cardKPI" style="width: 18rem;">
+				<div class="card-body">
+					<p class="card-title">Solde naturel</p>
+					<h3 class="card-title">75 000</h3>
+				</div>
 			</div>
 		</div>
+
 		<footer>
 			<p>Elias AIT HASSOU - Nabil AOUDIA - Wissam BELKAID</p>
 		</footer>
