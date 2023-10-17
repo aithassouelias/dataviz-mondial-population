@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
 		<meta http-equiv="refresh" content="15">
-        <title>Dashboard décès</title>
+        <title>Dashboard total</title>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <link href= "css/dashboard_deces.css" rel="stylesheet">
+        <link href= "css/dashboard_total.css" rel="stylesheet">
     </head>
     <body>
 		<div class="navbar">
@@ -23,59 +23,44 @@
 		</div>
 
 		<div class="card cardfiltre" style="width: 10rem;">
-				<div class="card-body">
-					<img src="image/filtre.png">
-					<select name="liste-continent">
-						<option>Mondial</option>
-						<option value="#">Afrique</option>
-						<option value="#">Amérique</option>
-						<option value="#">Asie</option>
-						<option value="#">Europe</option>
-						<option value="#">Océanie</option>
-					</select>
-				</div>
+			<div class="card-body">
+				<img src="image/filtre.png">
+				<select name="liste-continent">
+					<option>Mondial</option>
+					<option value="#">Afrique</option>
+					<option value="#">Amérique</option>
+					<option value="#">Asie</option>
+					<option value="#">Europe</option>
+					<option value="#">Océanie</option>
+				</select>
+			</div>
 		</div>
 
 		<div class="KPI">
 			<div class="card cardKPI" style="width: 18rem;">
 				<div class="card-body">
-					<p class="card-title">Nombre total de décès</p>
+					<p class="card-title">Nombre total de naissance</p>
 					<h3 class="card-title">100 000</h3>
 				</div>
 			</div>
-	
+
 			<div class="card cardKPI" style="width: 18rem;">
 				<div class="card-body">
-					<p class="card-title">Nombre de femmes décedées</p>
-					<h3 class="card-title">46 691</h3>
+					<p class="card-title">Nombre total de décès</p>
+					<h3 class="card-title">25 000</h3>
 				</div>
 			</div>
-	
+
 			<div class="card cardKPI" style="width: 18rem;">
 				<div class="card-body">
-					<p class="card-title">Nombre d'hommes décedés</p>
-					<h3 class="card-title">53 039</h3>
+					<p class="card-title">Solde naturel</p>
+					<h3 class="card-title">75 000</h3>
 				</div>
 			</div>
-		</div>
-
-		<div class="col-5 mx-auto">
-			<canvas id="linechart"></canvas>
-		</div>
-
-		<div class="col-5 mx-auto ">
-			<canvas id="barplot"></canvas>
 		</div>
 
 		<footer>
 			<p>Elias AIT HASSOU - Nabil AOUDIA - Wissam BELKAID</p>
 		</footer>
-
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		<script src="js/dashboard_deces.js"></script>	
-		<script src="js/dashboard_deces_map.js"></script>
-
-
     </body>
 </html>

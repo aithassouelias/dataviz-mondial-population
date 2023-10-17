@@ -2,30 +2,37 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-		<meta http-equiv="refresh" content="3">
+		<meta http-equiv="refresh" content="15">
         <title>World Population</title>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-        <link href= "css/style.css" rel="stylesheet">
+        <link href= "css/index.css" rel="stylesheet" type="text/css">
     </head>
     <body>
 		<div class="navbar">
-			<h2>World Population</h2>
-			<a href="index.html">Accueil</a>
+			<div class = "navbar-accueil" >
+				<a href="index.html">Accueil</a>
 
-			<select name="liste">
-				<option>Graphiques</option>
-				<option value="dashboard_deces.html">Décès</option>
-				<option value="dashboard_naissance.html">Naissance</option>
-				<option value="#">Global</option>   
-			</select>
-		</div>
-
-		<div class="card" style="width: 18rem;">
-			<div class="card-body">
-				<h5 class="card-title">Accueil</h5>
-				<p class="card-text">Présentation du texte du projet</p>
+				<select name="liste-dashboard" onChange="location.href=''+this.options[this.selectedIndex].value+'.html';">
+					<option>Tableau de bord</option>
+					<option value="dashboard_deces">Décès</option>
+					<option value="dashboard_naissance">Naissance</option>
+					<option value="dashboard_total">Total</option>   
+				</select>
 			</div>
 		</div>
+
+		<div class="card" style="width: 80%;">
+			<div class="card-body">
+				<h5 class="card-title">Accueil</h5>
+				<p class="card-text">
+					Présentation du texte du projet
+				</p>
+			</div>
+		</div>
+
+		<footer>
+			Elias AIT HASSOU - Nabil AOUDIA - Wissam BELKAID
+		</footer>
     </body>
 </html>
