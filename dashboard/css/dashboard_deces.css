@@ -71,3 +71,9 @@ a:link{
     left : 21rem;
     margin-bottom: 10px;
 }
+
+#map {
+    position: relative;
+    right : 23rem;
+    bottom: 30rem;
+}

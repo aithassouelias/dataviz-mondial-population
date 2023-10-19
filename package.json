@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "chart.js": "^4.4.0",
+    "chartjs-chart-geo": "^4.2.6",
     "pg": "^8.11.3"
   }
 }
