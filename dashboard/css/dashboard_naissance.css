@@ -54,3 +54,16 @@ select{
 a:link{
     text-decoration: none;
 }
+
+.mx-auto{
+    background-color: white;
+    margin-left: 100px;
+}
+.mx-auto2{
+    background-color: white;
+    margin-right: px;
+}
+
+#lineChart{
+
+}
