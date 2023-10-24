@@ -1,32 +1,46 @@
-fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json').then((r) => r.json()).then((data) => { 
-    const countries = ChartGeo.topojson.feature(data, data.objects.countries).features;
+const url = 'https://unpkg.com/world-atlas@2.0.2/countries-110m.json'
 
-    const chart = document.getElementById("worldMap").getContext("2d");
+fetch(url).then((result)=>result.json()).then((datapoint)=> {
+    const countries = ChartGeo.topojson.feature(datapoint, datapoint.objects.countries).features;
 
-    new Chart(chart, {
-      type: 'choropleth',
-      data: {
-        labels: countries.map((d) => d.properties.name),
-        datasets: [{
-          label: 'Countries',
-          data: countries.map((d) => ({feature: d, value: Math.random()})),
+    console.log(countries);
+
+    const data = {
+        labels : countries.map(country => country.properties.name),
+        datasets : [{
+                label : 'Countries',
+                data : countries.map(country => ({
+                    feature: country,
+                    value : Math.random()
+                })
+            ),
         }]
-      },
-      options: { 
-        showOutline: true,
-        showGraticule: true,
-        plugins: {
-          legend: {
-            display: false
-          },
-        },
-        scales: {
-          xy : {
-            projection: {
-              projection: 'equalEarth'
+    };
+
+
+    const config = {
+        type: 'choropleth',
+        data,
+        options : {
+            showOutline : true,
+            showGraticule : true,
+            scales : {
+                xy : {
+                    projection : 'equalEarth'
+                }
+            },
+            plugins : {
+                legend :{
+                    display : false
+                }
             }
-          }
         }
-      }
-    });
-});
+    };
+
+    const myChart = new Chart(
+        document.getElementById('map'),
+        config
+    );
+
+})
+

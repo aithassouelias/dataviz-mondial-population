@@ -2,7 +2,7 @@
 const {Client} = require('pg');
 const Pool = require("pg").Pool;
 
-/*
+
 const client = new Client({
     host : "db.ggaotsudljxsthdmqksc.supabase.co",
     user : "postgres",
@@ -24,11 +24,10 @@ client.query("CREATE TABLE births( \
         month VARCHAR(9), \
         source_year VARCHAR (4), \
         value INT NOT NULL, \
-        URL VARCHAR(100) \
     )"
 );
 
-
+/*
 client.query("CREATE TABLE deaths( \
         idDeath INT PRIMARY KEY NOT NULL, \
         Region_code VARCHAR(3) NOT NULL, \
@@ -42,7 +41,7 @@ client.query("CREATE TABLE deaths( \
         Number INT \
     )"
 );
-*/
+
 
 // Insertion des données
 
@@ -101,3 +100,4 @@ let csvDeaths = fastcsv
     });
 
 deaths.pipe(csvDeaths); 
+*/
