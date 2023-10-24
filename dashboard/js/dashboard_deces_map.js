@@ -1,4 +1,4 @@
-fetch('https://unpkg.com/world-atlas@2.0.2/countries-50m.json').then((r) => r.json()).then((data) => { 
+fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json').then((r) => r.json()).then((data) => { 
     const countries = ChartGeo.topojson.feature(data, data.objects.countries).features;
 
     const chart = document.getElementById("worldMap").getContext("2d");
