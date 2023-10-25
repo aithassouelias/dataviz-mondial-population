@@ -2,10 +2,6 @@
 const {Client} = require('pg');
 const Pool = require("pg").Pool;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ad2eca632c8680a4ed999240197d3a536006e4a7
 const client = new Client({
     host : "db.ggaotsudljxsthdmqksc.supabase.co",
     user : "postgres",
@@ -18,7 +14,7 @@ client.connect();
 
 // Création des tables
 
-/*
+
 client.query("CREATE TABLE births( \
         idBirth INT PRIMARY KEY  NOT NULL, \
         country VARCHAR(150) NOT NULL, \
@@ -28,15 +24,10 @@ client.query("CREATE TABLE births( \
         area VARCHAR(150), \
         month VARCHAR(9), \
         source_year VARCHAR (4), \
-<<<<<<< HEAD
         value INT NOT NULL \
-=======
-        value INT NOT NULL, \
->>>>>>> ad2eca632c8680a4ed999240197d3a536006e4a7
     )"
 );
 
-/*
 client.query("CREATE TABLE deaths( \
         idDeath INT PRIMARY KEY NOT NULL, \
         Region_code VARCHAR(3) NOT NULL, \
@@ -50,12 +41,8 @@ client.query("CREATE TABLE deaths( \
         Number INT \
     )"
 );
-<<<<<<< HEAD
-=======
 
->>>>>>> ad2eca632c8680a4ed999240197d3a536006e4a7
 
-*/
 // Insertion des données
 
 // packages
@@ -112,9 +99,6 @@ let csvDeaths = fastcsv
 
     });
 
-<<<<<<< HEAD
+
 deaths.pipe(csvDeaths); 
-=======
-deaths.pipe(csvDeaths); 
-*/
->>>>>>> ad2eca632c8680a4ed999240197d3a536006e4a7
+
