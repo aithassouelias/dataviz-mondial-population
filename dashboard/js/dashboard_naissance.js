@@ -8,15 +8,10 @@ window.addEventListener('load', () => {
 			labels: ['2009','2010','2011','2012','2013','2014','2015','2016','2017'],
 			datasets: [
         {
-				  label: 'Femme',
+				  label: 'Nombre de naissance',
 				  data: [3000,11000,3000,10500,9000,12000,5000,2500,6500],
           borderWidth: 1,
 				},
-				{
-				  label: 'Homme',
-				  data: [6000,4500,8000,5500,12000,14000,8000,9000,10000],
-          borderWidth: 1,
-				}
       ]
 		},
     options: {
