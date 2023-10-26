@@ -1,5 +1,7 @@
-window.addEventListener('load', () => {
+// LINE CHART
 
+window.addEventListener('load', () => {
+  
   const ctx = document.getElementById('lineChart');
 
 	new Chart(ctx, {

@@ -11,6 +11,10 @@ body{
     margin-left: 87%;
 }
 
+#title{
+    position: absolute;
+}
+
 .card {
     text-align: center;
     margin: auto;
