@@ -59,11 +59,11 @@ window.addEventListener('load', () => {
 	new Chart(ctx2, {
 		type: 'bar',
 		data: {
-		labels: ['Algeria','Morocco','France','United States of America','Ivory Cost','China','Portugal','Spain','Germany','South Africa'],
+		labels: ['Algeria','Morocco','France','United States of America','Ivory Cost'],
 		datasets: [
       {
       label: 'Nombre de naissance',
-      data: [90,85,80,75,70,65,60,55,50,45],
+      data: [90,85,80,75,70],
       borderWidth: 1,
 			},
     ]

@@ -35,6 +35,7 @@ footer{
     text-align: center;
     bottom: auto;
     width: 100%;
+    margin-top: 1rem;
 }
 
 img{
@@ -53,5 +54,51 @@ select{
 
 a:link{
     text-decoration: none;
+}
+
+.worldMap{
+    border: white;
+    text-align: center;
+    position: absolute ;
+    top: 18,5rem;
+    right: 55rem;
+    background-color: white;
+}
+
+
+.card-title1{
+    text-align: center;
+    margin-top: 9rem;
+}
+
+
+.lineChart{
+    background-color: white;
+}
+
+.doughnutChart{
+    background-color: white;
+}
+
+.BarChartHorizontal{
+    background-color: white;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 2em;
+}
+
+.top-chart {
+    margin-bottom: 3.5rem;
+}
+
+.doughnutChart{
+    margin-right: 3.8rem; /* Ajoute une marge à droite pour séparer le graphique doughnutChart de BarChartHorizontal */
+}
+
+.box > * {
+    flex: 1;
 }
 
