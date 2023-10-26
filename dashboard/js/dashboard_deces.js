@@ -1,3 +1,5 @@
+// LINE CHART
+
 window.addEventListener('load', () => {
 
     const ctx1 = document.getElementById('linechart');
@@ -41,7 +43,7 @@ window.addEventListener('load', () => {
 
 });
 
-///
+// BAR PLOT
 
 window.addEventListener('load', () => {
 
