@@ -23,7 +23,7 @@ fetch(url).then((result)=>result.json()).then((datapoint)=> {
         data,
         options : {
             showOutline : true,
-            showGraticule : true,
+            showGraticule : false,
             scales : {
                 xy : {
                     projection : 'equalEarth'

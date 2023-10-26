@@ -11,6 +11,10 @@ body{
     margin-left: 87%;
 }
 
+#title{
+    position: absolute;
+}
+
 .KPI{
     display: flex;
     justify-content: space-between;
@@ -39,7 +43,7 @@ footer{
     width: 100%;
 }
 
-img{
+#filtre{
     width: 20px;
     height: 20px;
 }
