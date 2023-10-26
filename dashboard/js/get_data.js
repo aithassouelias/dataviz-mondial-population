@@ -11,9 +11,9 @@ const pool = new Pool({
 
 // requête à éxécuter
 
-const request = "SELECT country, SUM(value) AS nb_naissance \
+const request = "SELECT year, SUM(value) AS nb_naissance \
                  FROM births WHERE continent = 'Africa' \
-                 GROUP BY country \
+                 GROUP BY year \
                  ORDER BY nb_naissance";
 
 // Création d'une fonction asynchrone afin de récupérer l'ensemble des données lorsque la requête est terminée
@@ -41,10 +41,10 @@ async function main() {
     try {
         const data = await getDataFromDatabase();
 
-        const countries = data.map(item => item.country);
+        const years = data.map(item => item.year);
         const naissances = data.map(item => item.nb_naissance);
 
-        console.log(countries);
+        console.log(years);
         console.log(naissances);
     } catch (error) {
         // Gérer l'erreur, si il y en a une
