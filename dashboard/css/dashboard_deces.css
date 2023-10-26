@@ -79,3 +79,11 @@ a:link{
     top: 18,5rem;
     right: 50rem;
 }
+
+#map{
+    margin-top: 100px;
+}
+
+.titreMap{
+    margin-top: 30px;
+}
