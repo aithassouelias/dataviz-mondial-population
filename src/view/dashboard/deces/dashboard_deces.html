@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Dashboard décès</title>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link href= "../../../view/assets/css/dashboard_deces.css" rel="stylesheet">
+    </head>
+    <body>
+	<div class="navbar">
+		<img src="../../../view/assets/image/worldPopulation.png" id="title">
+		<div class="navbar-links">
+			<a href="../../../view/index.html">Accueil</a>
+			<select name="liste-dashboard" onChange="location.href=''+this.options[this.selectedIndex].value+'.html';">
+				<option>Tableau de bord</option>
+				<option value="dashboard_deces">Décès</option>
+				<option value="../naissance/dashboard_naissance">Naissance</option>
+				<option value="../total/dashboard_total">Total</option>   
+			</select>
+		</div>
+	</div>
+
+		<div class="card cardfiltre" style="width: 10rem;">
+				<div class="card-body">
+					<img src="../../../view/assets/image/filtre.png" id="filtre">
+					<select name="liste-continent" onChange="location.href=''+this.options[this.selectedIndex].value;">
+						<option value="./dashboard_deces.html">Mondial</option>
+						<option value="./dashboard_deces_afrique.html">Afrique</option>
+						<option value="./dashboard_deces_amerique.html">Amérique</option>
+						<option value="./dashboard_deces_asie.html">Asie</option>
+						<option value="./dashboard_deces_europe.html">Europe</option>
+						<option value="./dashboard_deces_oceanie.html">Océanie</option>
+					</select>
+				</div>
+		</div>
+
+		<div class="container">
+            <div class="row">
+				<div class="col-12"></div>
+				<div class="KPI">
+					<div class="card cardKPI" style="width: 18rem;">
+						<div class="card-body">
+							<p class="card-title">Nombre total de décès</p>
+							<h3 class="card-title" id="KPI-Total"></h3>
+						</div>
+					</div>
+					<div class="card cardKPI" style="width: 18rem;">
+						<div class="card-body">
+							<p class="card-title">Nombre de femmes décedées</p>
+							<h3 class="card-title" id="KPI-Total-Femme"></h3>
+						</div>
+					</div>
+					<div class="card cardKPI" style="width: 18rem;">
+						<div class="card-body">
+							<p class="card-title">Nombre d'hommes décedés</p>
+							<h3 class="card-title" id="KPI-Total-Homme"></h3>
+						</div>
+					</div>
+				</div>
+				<div class="col-5 d-flex align-items-center">
+					<div class="card-body">
+						<p class="card-title1">Distribution du nombre de décès par pays</p>
+						<canvas id="map" class="w-100"></canvas>
+					</div>
+				</div>
+				<div class="col-7 box">
+					<div class="container">
+						<div class="row">
+							<div class="col-12 linechart top-chart">
+								<canvas class="w-100" id="linechart"></canvas>
+							</div>
+						</div>
+							<div class="col-12 barplot">
+								<canvas class="w-100" id="barplot"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>                                                           
+            </div>
+        </div>
+
+		<footer>
+			<p>Elias AIT HASSOU - Nabil AOUDIA - Wissam BELKAID</p>
+		</footer>
+
+		<!-- Scripts permettant la connexion à supabase et l'extraction de données -->
+        <script src=" https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
+        <script src="../../../model/connect.js"></script>
+        <script src="../../../model/deaths.js"></script>
+
+
+		<!-- Scripts permettant d'intégrer Bootstrap/ChartJS/ChartGeo -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script type="text/javascript" src="https://unpkg.com/chartjs-chart-geo@3.5.2/build/index.umd.min.js"></script>
+		
+		<!-- Script permettant d'afficher les graphiques et la map-->
+		<script src="../../../controller/deces/dashboard_deces.js"></script>
+		<script src="../../../controller/deces/dashboard_deces_map.js"></script>
+
+
+    </body>
+</html>

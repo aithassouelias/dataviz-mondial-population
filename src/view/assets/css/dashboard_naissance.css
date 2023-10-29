@@ -1,0 +1,126 @@
+body{
+    background-color: #F5F5F5;
+}
+
+/* Style pour la barre de navigation */
+.navbar {
+    background-color: white;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Style pour le titre (image) */
+#title {
+    max-width: 150px;
+}
+
+/* Style pour la section des liens */
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+/* Style pour le menu déroulant */
+.navbar-links select {
+    background-color: white;
+    color: #333;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+  
+/* Style pour les liens dans la barre de navigation */
+.navbar-links a {
+  text-decoration: none;
+  color: blue;
+  margin-right: 20px;
+}
+
+.KPI{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardKPI {
+    margin-top: 30px;
+    margin: auto;
+    text-align: center;
+}
+
+.card p{
+    font-size: 1.2rem;
+}
+
+.card h3{
+    font-size: 2.5rem;
+}
+
+footer{
+    position: absolute;
+    text-align: center;
+    bottom: auto;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#filtre{
+    width: 20px;
+    height: 20px;
+}
+
+.cardfiltre{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+select{
+    border: white;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+.align-items-center{
+    background-color: white;
+}
+
+
+.card-title1{
+    text-align: center;
+}
+
+
+.lineChart{
+    background-color: white;
+}
+
+.doughnutChart{
+    background-color: white;
+}
+
+.BarChartHorizontal{
+    background-color: white;
+}
+
+.box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 2em;
+}
+
+.top-chart {
+    margin-bottom: 3.5rem;
+}
+
+.doughnutChart{
+    margin-right: 3.3rem; /* Ajoute une marge à droite pour séparer le graphique doughnutChart de BarChartHorizontal */
+}
+
+.box > * {
+    flex: 1;
+}
+

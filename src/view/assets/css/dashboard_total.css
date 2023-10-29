@@ -1,0 +1,106 @@
+body{
+    background-color: #F5F5F5;
+}
+
+/* Style pour la barre de navigation */
+.navbar {
+    background-color: white;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Style pour le titre (image) */
+#title {
+    max-width: 150px;
+}
+
+/* Style pour la section des liens */
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+/* Style pour le menu déroulant */
+.navbar-links select {
+    background-color: white;
+    color: #333;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+  
+/* Style pour les liens dans la barre de navigation */
+.navbar-links a {
+  text-decoration: none;
+  color: blue;
+  margin-right: 20px;
+}
+
+.KPI{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardKPI {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.card p{
+    font-size: 1.2rem;
+}
+
+.card h3{
+    font-size: 2.5rem;
+}
+
+footer{
+    position: absolute;
+    text-align: center;
+    bottom: auto;
+    width: 100%;
+}
+
+#filtre{
+    width: 20px;
+    height: 20px;
+}
+
+.cardfiltre{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+select{
+    border: white;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+.card-title1{
+    text-align: center;
+}
+
+.linechart{
+    background-color: white;
+}
+
+.barplot{
+    background-color: white;
+}
+
+.align-items-center{
+    background-color: white;
+}
+
+.top-chart{
+    margin-bottom: 3.5rem;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Dashboard Naissance</title>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link href= "../../../view/assets/css/dashboard_naissance.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="navbar">
+            <img src="../../../view/assets/image/worldPopulation.png" id="title">
+            <div class="navbar-links">
+                <a href="../../../view/index.html">Accueil</a>
+                <select name="liste-dashboard" onChange="location.href=''+this.options[this.selectedIndex].value+'.html';">
+                    <option>Tableau de bord</option>
+                    <option value="../deces/dashboard_deces_afrique">Décès</option>
+                    <option value="./dashboard_naissance_afrique">Naissance</option>
+                    <option value="../total/dashboard_total_afrique">Total</option>   
+                </select>
+            </div>
+        </div>
+
+        <div class="card cardfiltre" style="width: 10rem;">
+			<div class="card-body">
+				<img src="../../../view/assets/image/filtre.png" id="filtre">
+				<select name="liste-continent" onChange="location.href=''+this.options[this.selectedIndex].value">
+                    <option value="./dashboard_naissance.html">Mondial</option>
+                    <option value="./dashboard_naissance_afrique.html">Afrique</option>
+                    <option value="./dashboard_naissance_amerique.html">Amérique</option>
+                    <option value="./dashboard_naissance_asie.html">Asie</option>
+                    <option value="./dashboard_naissance_europe.html">Europe</option>
+                    <option value="./dashboard_naissance_oceanie.html">Océanie</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="KPI">
+                    <div class="card cardKPI" style="width: 18rem;">
+                        <div class="card-body">
+                            <p class="card-title">Nombre total de naissances</p>
+                            <h3 class="card-title" id="KPI-Total"></h3>
+                        </div>
+                    </div>
+                    <div class="card cardKPI" style="width: 18rem;">
+                        <div class="card-body">
+                            <p class="card-title">Nombre moyen de naissances par année</p>
+                            <h3 class="card-title" id="KPI-AVG"></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 d-flex align-items-center">
+                    <div class="card-body">
+                        <p class="card-title1">Distribution du nombre de naissance par pays</p>
+                        <canvas id="map" class="w-100"></canvas>
+                    </div>
+                </div>
+                <div class="col-7 box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 lineChart top-chart">
+                                <canvas class="w-100" id="lineChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 doughnutChart">
+                                <canvas class="w-100" id="doughnutChart"></canvas>
+                            </div>
+                            <div class="col-7 BarChartHorizontal">
+                                <canvas class="w-100" id="BarChartHorizontal"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>                                                           
+            </div>
+        </div>        
+
+        <footer>
+			<p>Elias AIT HASSOU - Nabil AOUDIA - Wissam BELKAID</p>
+		</footer>
+        
+        <!-- Scripts permettant la connexion à supabase et l'extraction de données -->
+        <script src=" https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.38.4/dist/umd/supabase.min.js"></script>
+        <script src="../../../model/connect.js"></script>
+        <script src="../../../model/births.js"></script>
+
+        <!-- Scripts permettant d'intégrer Bootstrap et ChartJS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- Script permettant d'afficher les graphiques et la map-->
+		<script src="../../../controller/naissance/dashboard_naissance_europe.js"></script>
+       
+        <script type="text/javascript" src="https://unpkg.com/chartjs-chart-geo@3.5.2/build/index.umd.min.js"></script>
+        <script src="../../../controller/dashboard_naissance_map.js"></script>
+    </body>
+</html>

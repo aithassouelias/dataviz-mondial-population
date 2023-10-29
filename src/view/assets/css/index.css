@@ -1,0 +1,68 @@
+body{
+    background-color: #F5F5F5;
+}
+
+/* Style pour la barre de navigation */
+.navbar {
+    background-color: white;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  /* Style pour le titre (image) */
+  #title {
+    max-width: 150px;
+  }
+  
+  /* Style pour la section des liens */
+  .navbar-links {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style pour le menu déroulant */
+  .navbar-links select {
+    background-color: white;
+    color: #333;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  /* Style pour les liens dans la barre de navigation */
+  .navbar-links a {
+    text-decoration: none;
+    color: blue;
+    margin-right: 20px;
+  }
+  
+
+.card {
+    text-align: center;
+    margin: auto;
+    size: auto;
+    margin-top: 30px;
+    height: 650px;
+}
+
+
+
+
+select{
+    border: white;
+}
+
+/* .card-text{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+.card-title{
+    margin-top: 0rem;
+} */
