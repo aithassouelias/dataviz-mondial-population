@@ -70,7 +70,7 @@ window.addEventListener('load', () => {
         },
         title: {
           display: true,
-          text: "Evolution du nombre de naissance par année"
+          text: "Distribution du nombre de naissance par bank income"
         }
         }
       },
