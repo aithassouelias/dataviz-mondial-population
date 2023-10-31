@@ -1,9 +1,11 @@
 const birth = new Birth();
 birth.getBirthsByCountry().then((births) => {
+
     // Traitez les données des naissances par pays
     const countryGrouped = birth.groupValueByColumn("country", births);
     const countriesData = Object.entries(countryGrouped);
 
+    // Ce lien renvoie aux données sur les pays pour créer la carte
     fetch('https://unpkg.com/world-atlas@2.0.2/countries-110m.json')
         .then((result) => result.json())
         .then((datapoint) => {
