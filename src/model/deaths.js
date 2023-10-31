@@ -173,6 +173,14 @@ class Death {
         return deaths
     }
 
+    async getDeathsValuesByYearContinent(continent) {
+        const { data: deaths, error } = await supabaseAuth
+            .from('deaths')
+            .select("year, number")
+            .eq('region_name', continent)
+        return deaths
+    }
+
     /* Fonction getdeathsnumbers permettant de récupérer le nombre de décès pour les hommes par année */
     async getDeathsValuesMaleByYear() {
         const { data: deaths, error } = await supabaseAuth
