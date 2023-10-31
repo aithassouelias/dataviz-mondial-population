@@ -9,6 +9,8 @@ birth.getBirthsByCountry().then((births) => {
         .then((datapoint) => {
             const countries = ChartGeo.topojson.feature(datapoint, datapoint.objects.countries).features;
 
+            const colorScale = chroma.scale(['lightblue', 'darkblue']).domain([0, 200000]);
+
             // Associez les données de naissances par pays avec les pays sur la carte
             countries.forEach((country) => {
                 const countryName = country.properties.name;
@@ -19,17 +21,18 @@ birth.getBirthsByCountry().then((births) => {
                 } else {
                     country.properties.births = 0; // Par défaut, attribuez 0 aux pays sans données
                 }
+
+                const color = colorScale(country.properties.births).hex();
+                country.properties.color = color;
             });
 
             const data = {
                 labels : countries.map(country => country.properties.name),
                 datasets : [{
                         label : 'Countries',
-                        data : countries.map((country, index) => ({
+                        data : countries.map(country => ({
                             feature: country,
                             value : country.properties.births
-                            value: values[index],
-                            color: scale(values[index]).hex()
                         })
                     ),
                 }]
@@ -52,6 +55,10 @@ birth.getBirthsByCountry().then((births) => {
                             display : false
                         }
                     }
+                },
+                colorAxis: {
+                    inputDomain: [0, 200000], // Adapter l'intervalle de couleurs en fonction de vos données
+                    outputColor: (d) => colorScale(d).hex()
                 }
             };
     

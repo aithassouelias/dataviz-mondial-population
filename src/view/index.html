@@ -12,12 +12,13 @@
   		<img src="./assets/image/worldPopulation.png" id="title">
   		<div class="navbar-links">
     		<a href="index.html">Accueil</a>
-    		<select name="liste-dashboard" onChange="location.href=''+this.options[this.selectedIndex].value+'.html';">
-      			<option>Tableau de bord</option>
-      			<option value="./dashboard/deces/dashboard_deces">Décès</option>
-      			<option value="./dashboard/naissance/dashboard_naissance">Naissance</option>
-      			<option value="./dashboard/total/dashboard_total">Total</option>   
-    		</select>
+			<select name="liste-dashboard" onChange="redirectTo(this)">
+				<option id="tableau-de-bord" value="0" class="0">Tableau de bord</option>
+				<option id="dashboard_deces" value="death" class="dashboard-choice">Décès</option>
+				<option id="dashboard_naissance" value="birth" class="dashboard-choice">Naissance</option>
+				<option id="dashboard_total" value="total" class="dashboard-choice">Total</option>
+			</select>
+		</div>
   		</div>
 	</div>
 
@@ -46,9 +47,8 @@
 		<footer style="margin-top: 1rem; text-align: center;">
 			Elias AIT HASSOU - Nabil AOUDIA - Wissam BELKAID
 		</footer>
-		  
-		  
 
-		
+
+		<script src="../controller/handleDashboard.js"></script>
     </body>
 </html>

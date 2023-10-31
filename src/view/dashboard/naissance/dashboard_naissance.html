@@ -7,16 +7,16 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <link href= "../../../view/assets/css/dashboard_naissance.css" rel="stylesheet">
     </head>
-    <body>
+    <body onload="initDashboardValue('birth')">
         <div class="navbar">
             <img src="../../../view/assets/image/worldPopulation.png" id="title">
             <div class="navbar-links">
                 <a href="../../../view/index.html">Accueil</a>
-                <select name="liste-dashboard" onChange="location.href=''+this.options[this.selectedIndex].value+'.html';">
-                    <option>Tableau de bord</option>
-                    <option value="../deces/dashboard_deces">Décès</option>
-                    <option value="./dashboard_naissance">Naissance</option>
-                    <option value="../total/dashboard_total">Total</option>   
+                <select name="liste-dashboard" onChange="redirectTo(this)">
+                    <option id="tableau-de-bord" value="0" class="0">Tableau de bord</option>
+                    <option id="dashboard_deces" value="death" class="dashboard-choice">Décès</option>
+                    <option id="dashboard_naissance" value="birth" class="dashboard-choice">Naissance</option>
+                    <option id="dashboard_total" value="total" class="dashboard-choice">Total</option>
                 </select>
             </div>
         </div>
@@ -24,13 +24,13 @@
         <div class="card cardfiltre" style="width: 10rem;">
 			<div class="card-body">
 				<img src="../../../view/assets/image/filtre.png" id="filtre">
-				<select name="liste-continent" onChange="location.href=''+this.options[this.selectedIndex].value">
-                    <option value="./dashboard_naissance.html">Mondial</option>
-                    <option value="./dashboard_naissance_afrique.html">Afrique</option>
-                    <option value="./dashboard_naissance_amerique.html">Amérique</option>
-                    <option value="./dashboard_naissance_asie.html">Asie</option>
-                    <option value="./dashboard_naissance_europe.html">Europe</option>
-                    <option value="./dashboard_naissance_oceanie.html">Océanie</option>
+                <select name="liste-continent" onchange="handleChangeFilter(this)">
+                    <option value="">Mondial</option>
+                    <option value="Africa">Afrique</option>
+                    <option value="America">Amérique</option>
+                    <option value="Asia">Asie</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Océanie</option>
                 </select>
             </div>
         </div>
@@ -89,10 +89,12 @@
         <!-- Scripts permettant d'intégrer Bootstrap et ChartJS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/chartjs-chart-geo@3.5.2/build/index.umd.min.js"></script>
 
         <!-- Script permettant d'afficher les graphiques et la map-->
+    <script src="../../../controller/handleLoader.js"></script>
+        <script src="../../../controller/handleFilter.js"></script>
 		<script src="../../../controller/naissance/dashboard_naissance.js"></script>
-        <script type="text/javascript" src="https://unpkg.com/chartjs-chart-geo@3.5.2/build/index.umd.min.js"></script>
-        <script src="../../../controller/naissance/dashboard_naissance_map_test.js"></script>
+        <script src="../../../controller/handleDashboard.js"></script>
     </body>
 </html>
