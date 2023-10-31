@@ -295,56 +295,83 @@ function _getDeathsValuesMale(_death, _continent="") {
 	});
 }
 
-/*
-Fonction permettant de créer et d'afficher la map
-*/
-function createMap() {
+function createMap(_death) {
 
 	const ctx = document.getElementById('map');
 	const spinner = createSpinner();
 	ctx.parentNode.appendChild(spinner);
 
-	fetch(mapUrl).then((result)=>result.json()).then((datapoint)=> {
-		const countries = ChartGeo.topojson.feature(datapoint, datapoint.objects.countries).features;
+	_death.getDeathsValues().then((totalDeaths) => {
+		_death.getdeathsByCountry().then((deaths) => {
+			const countryGrouped = _death.groupValueByColumn("country_name", deaths);
+			const countriesData = Object.entries(countryGrouped);
 
-		const data = {
-			labels : countries.map(country => country.properties.name),
-			datasets : [{
-				label : 'Countries',
-				data : countries.map(country => ({
-						feature: country,
-						value : Math.random()
-					})
-				),
-			}]
-		};
 
-		const config = {
-			type: 'choropleth',
-			data,
-			options : {
-				showOutline : true,
-				showGraticule : true,
-				scales : {
-					xy : {
-						projection : 'equalEarth'
+			fetch(mapUrl).then((result)=>result.json()).then((datapoint)=> {
+				const countries = ChartGeo.topojson.feature(datapoint, datapoint.objects.countries).features;
+
+				const groupedTotalDeaths = parseInt(_death.groupValues(totalDeaths));
+
+				countries.forEach((country) => {
+					const countryName = country.properties.name;
+					const countryDeaths = countriesData.find((entry) => entry[0] === countryName);
+
+					if (countryDeaths) {
+						country.properties.deaths = countryDeaths[1]; // Ajoutez la valeur des naissances au pays correspondant
+					} else {
+						country.properties.deaths = 0; // Par défaut, attribuez 0 aux pays sans données
 					}
-				},
-				plugins : {
-					legend :{
-						display : false
+				});
+
+				const data = {
+					labels : countries.map(country => country.properties.name),
+					datasets : [{
+						label : 'Countries',
+						backgroundColor: context => {
+							if (context.dataIndex == null) {
+								return null;
+							}
+							const value = context.dataset.data[context.dataIndex];
+							return `rgb(0, 0, ${value.value * 255})`;
+						},
+						data : countries.map(country => ({
+								feature: country,
+								value : createPercent(parseInt(country.properties.deaths), groupedTotalDeaths)
+							})
+						),
+					}]
+				};
+
+				const config = {
+					type: 'choropleth',
+					data,
+					options : {
+						showOutline : true,
+						showGraticule : true,
+						scales : {
+							xy : {
+								projection : 'equalEarth'
+							}
+						},
+						plugins : {
+							legend :{
+								display : false
+							}
+						}
 					}
-				}
-			}
-		};
+				};
 
-		spinner.remove();
-		const myChart = new Chart(
-			document.getElementById('map'),
-			config
-		);
+				spinner.remove();
+				const myChart = new Chart(
+					document.getElementById('map'),
+					config
+				);
 
-	})
+			})
+		});
+	});
+
+
 }
 
 /*
@@ -369,6 +396,9 @@ function initializeData(continent="") {
 	_getDeathsValuesMale(death, continent);
 
 	// Map
-	createMap();
+	createMap(death);
 }
 
+function createPercent(values, total) {
+	return ((values / total) * 100);
+}

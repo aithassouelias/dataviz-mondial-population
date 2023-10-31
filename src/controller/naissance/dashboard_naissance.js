@@ -230,54 +230,79 @@ function _getBirthsValuesByYearKpi(_birth, _continent="") {
   });
 }
 
-function createMap(){
-  const ctx = document.getElementById('map');
-  const spinner = createSpinner();
-  ctx.parentNode.appendChild(spinner);
-  fetch(mapUrl).then((result)=>result.json()).then((datapoint)=> {
-    const countries = ChartGeo.topojson.feature(datapoint, datapoint.objects.countries).features;
+function createMap(_birth){
+  _birth.getBirthsValues().then((totalBirths) => {
+    _birth.getBirthsByCountry().then((births) => {
 
-    console.log(countries);
+      // Traitez les données des naissances par pays
+      const countryGrouped = _birth.groupValueByColumn("country", births);
+      const countriesData = Object.entries(countryGrouped);
 
-    const data = {
-      labels : countries.map(country => country.properties.name),
-      datasets : [{
-        label : 'Countries',
-        data : countries.map(country => ({
-              feature: country,
-              value : Math.random()
-            })
-        ),
-      }]
-    };
+      const url = 'https://unpkg.com/world-atlas@2.0.2/countries-110m.json'
+
+      fetch(url).then((result) => result.json()).then((datapoint) => {
+        const countries = ChartGeo.topojson.feature(datapoint, datapoint.objects.countries).features;
 
 
-    const config = {
-      type: 'choropleth',
-      data,
-      options : {
-        showOutline : true,
-        showGraticule : false,
-        scales : {
-          xy : {
-            projection : 'equalEarth'
+        const groupedTotalBirths = parseInt(_birth.groupValues(totalBirths));
+
+        countries.forEach((country) => {
+          const countryName = country.properties.name;
+          const countryBirths = countriesData.find((entry) => entry[0] === countryName);
+
+          if (countryBirths) {
+            country.properties.births = countryBirths[1]; // Ajoutez la valeur des naissances au pays correspondant
+          } else {
+            country.properties.births = 0; // Par défaut, attribuez 0 aux pays sans données
           }
-        },
-        plugins : {
-          legend :{
-            display : false
+        });
+        
+
+        const data = {
+          labels: countries.map(country => country.properties.name),
+          datasets: [
+            {
+              label: "Countries",
+              backgroundColor: context => {
+                if (context.dataIndex == null) {
+                  return null;
+                }
+                const value = context.dataset.data[context.dataIndex];
+                return `rgb(0, 0, ${value.value * 255})`;
+              },
+              data: countries.map(d => ({feature: d, value: createPercent(parseInt(d.properties.births), groupedTotalBirths)}))
+            }
+          ]
+        };
+
+
+        const config = {
+          type: 'choropleth',
+          data,
+          options: {
+            showOutline: true,
+            showGraticule: false,
+            scales: {
+              xy: {
+                projection: 'equalEarth'
+              }
+            },
+            plugins: {
+              legend: {
+                display: false
+              }
+            }
           }
-        }
-      }
-    };
+        };
 
-    spinner.remove();
-    const myChart = new Chart(
-        document.getElementById('map'),
-        config
-    );
+        const myChart = new Chart(
+            document.getElementById('map'),
+            config
+        );
 
-  })
+      })
+    });
+  });
 }
 function initializeData(continent="") {
   const birth = new Birth();
@@ -297,5 +322,9 @@ function initializeData(continent="") {
   // KPI Naissance moyenne par an
   _getBirthsValuesByYearKpi(birth, continent);
 
-  createMap();
+  createMap(birth);
+}
+
+function createPercent(values, total) {
+  return ((values / total) * 100);
 }

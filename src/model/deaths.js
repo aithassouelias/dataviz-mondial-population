@@ -121,15 +121,23 @@ class Death {
         return deaths
     }
     
-    /* Fonction getdeathsByCountry permettant de récupérer le pays et le nombre de naissance */
+    /* Fonction getdeathsByCountry permettant de récupérer le pays et le nombre de décès */
     async getdeathsByCountry() {
         const { data: deaths, error } = await supabaseAuth
             .from('deaths')
-            .select("country, value")
+            .select("country_name, number")
         return deaths
     }
 
-    /* Fonction getdeathsnumbers permettant de récupérer le nombre de décès */
+    async getdeathsByCountryContinent(continent) {
+        const { data: deaths, error } = await supabaseAuth
+            .from('deaths')
+            .select("country_name, number")
+            .eq('region_name', continent)
+        return deaths
+    }
+
+    /* Fonction  permettant de récupérer le nombre de décès */
     async getDeathsValues() {
         const { data: deaths, error } = await supabaseAuth
             .from('deaths')
@@ -137,6 +145,7 @@ class Death {
         return deaths
     }
 
+    /* Fonction  permettant de récupérer le nombre de décès par continent */
     async getDeathsValuesContinent(continent) {
         const { data: deaths, error } = await supabaseAuth
             .from('deaths')

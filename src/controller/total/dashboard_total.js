@@ -88,7 +88,7 @@ async function createLineChart(_birth,_death, _continent="") {
 Cette fonction permet de créer le Bar chart permettant d'afficher les pays 
 */
 async function createBarChart(_birth,_death, _continent="") {
-	const ctx = document.getElementById('barchart');
+	const ctx = document.getElementById('barplot');
     const spinner = createSpinner();
     ctx.parentNode.appendChild(spinner);
 	const existingChart = Chart.getChart(ctx);
@@ -98,60 +98,76 @@ async function createBarChart(_birth,_death, _continent="") {
 		existingChart.destroy();
 	}
 
-    let functionToCallBirth = _birth.getBirthsValuesByYear()
-    let functionToCallDeath = _death.getDeathsValuesByYear()
+    let functionToCallBirth = _birth.getBirthsByCountry()
+    let functionToCallDeath = _death.getdeathsByCountry()
 
     if(_continent !== ""){
-        functionToCallBirth = _birth.getBirthsValuesByYearContinent(_continent)
-        functionToCallDeath = _death.getDeathsValuesByYearContinent(_continent)
+        functionToCallBirth = _birth.getBirthsByCountryContinent(_continent)
+        functionToCallDeath = _death.getdeathsByCountryContinent(_continent)
     }
 
     try {
-        const birthsByYear = await functionToCallBirth;
-        const deathsByYear = await functionToCallDeath;
+        const birthsByCountry = await functionToCallBirth;
+        const deathsByCountry = await functionToCallDeath;
 
-        const birthsGrouped = _birth.groupValueByColumn("year", birthsByYear);
-        const deathsGrouped = _death.groupValueByColumn("year", deathsByYear);
+        const birthsGrouped = _birth.groupValueByColumn("country", birthsByCountry);
+        const deathsGrouped = _death.groupValueByColumn("country_name", deathsByCountry);
 
-        const years = Object.keys(birthsGrouped);
+        const countries = Object.keys(birthsGrouped);
 
-        const soldeNaturel = years.map((year) => {
-            const births = birthsGrouped[year] || 0;
-            const deaths = deathsGrouped[year] || 0;
+        const soldeNaturel = countries.map((country) => {
+            const births = birthsGrouped[country] || 0;
+            const deaths = deathsGrouped[country] || 0;
             return births - deaths;
         });
 
+
+        const arrCountryGrouped = Object.entries(countries);
+
+        /* Trier les pays de manière décroissante en fonction du nombre de naissances*/
+        arrCountryGrouped.sort((a, b) => b[1] - a[1]);
+
+        let country = arrCountryGrouped.map((item) => item[0]);
+        let values = arrCountryGrouped.map((item) => item[1]);
+
+        /* Récupérer seulement les 5 premiers pays */
+        country.splice(5, country.length);
+        values.splice(5, values.length);
+
         spinner.remove();
+
         // Création du graphique avec les paramètres donnés en entrée de la fonction
 
         new Chart(ctx, {
-            type: 'line',
+            
+            type: 'bar',
             data: {
-                labels: years,
+                labels: countries,
                 datasets: [
                     {
                         label: 'Solde naturel',
                         data: soldeNaturel,
                         borderWidth: 1
-                    }
+                    },
                 ]
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: false
+                        beginAtZero: true
                     },
                 },
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false,
-                        position: 'top',
+                responsive : true,
+                indexAxis :'y',
+                plugins : {
+                    legend : {
+                        display : false,
+                        position : 'top',
                     },
-                    title: {
-                        display: true,
-                        text: "Evolution du solde naturel par année"
-                    }
+                    title : {
+                        display : true,
+                        text : "Les 10 pays avec les soldes naturels les plus importants"
+                }
                 }
             }
         });
@@ -239,5 +255,8 @@ function initializeData(continent="") {
 
     // Affichage du Line Chart
     createLineChart(birth,death,continent)
+
+    // Affichage du Bar Chart
+    createBarChart(birth,death,continent)
     
 }
