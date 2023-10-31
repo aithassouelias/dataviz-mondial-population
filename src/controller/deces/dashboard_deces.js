@@ -347,6 +347,9 @@ function createMap() {
 	})
 }
 
+/*
+Cette fonction ...
+*/
 function initializeData(continent="") {
 	const death = new Death();
 
