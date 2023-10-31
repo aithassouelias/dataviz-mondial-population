@@ -1,13 +1,25 @@
+// Lien pour récupérer les données pour la création de la map
 const mapUrl = 'https://unpkg.com/world-atlas@2.0.2/countries-110m.json'
+
+
+/*
+Cette fonction crée le line chart permettant de voir l'évolution du nombre de naissance dans le temps 
+
+_values : nombre de naissance
+_years : années
+*/
 
 function createLineChart(_years, _values) {
   const ctx = document.getElementById('lineChart');
 
   const existingChart = Chart.getChart(ctx);
 
+  // Supprimer le graphique si il existe afin de recréer le nouveau lorsque l'on change de filtre
   if (existingChart) {
     existingChart.destroy();
   }
+
+  // Création du graphique avec les paramètres donnés en entrée de la fonction
 
   new Chart(ctx, {
     type: 'line',
@@ -37,15 +49,23 @@ function createLineChart(_years, _values) {
   })
 }
 
+/**
+Cette fonction crée le Donut Chart permettant de voir le nombre de naissance en fonction du groupe de revenu
+
+_values : nombre de naissance
+bankIncome : groupe de revenu 
+*/
 function createDonutChart(_values, _bankIncome) {
   const ctx = document.getElementById('doughnutChart');
 
   const existingChart = Chart.getChart(ctx);
 
+  /* Supprimer le graphique si il existe afin de recréer le nouveau lorsque l'on change de filtre */
   if (existingChart) {
     existingChart.destroy();
   }
 
+  // Création du graphique avec les paramètres donnés en entrée de la fonction
   new Chart(ctx, {
     type: 'doughnut',
     data: {
@@ -75,6 +95,7 @@ function createDonutChart(_values, _bankIncome) {
     },
   })
 }
+
 
 function createBarChart(_country, _values) {
   const ctx = document.getElementById('BarChartHorizontal');
@@ -114,16 +135,28 @@ function createBarChart(_country, _values) {
   })
 }
 
+/**
+Cette fonction récupère les données relatifs aux naissances et au continent pour chaque année par année
+_birth : 
+_continent : nom du contient que l'on veut visualiser, par défaut vide
+*/
 function _getBirthsValuesByYear(_birth, _continent="") {
   const ctx = document.getElementById('lineChart');
   const spinner = createSpinner();
   ctx.parentNode.appendChild(spinner);
 
+  // Il existe 2 fonctions pour récupérer les données, une mondiale et une relative au continent
+	
+	// functionToCall recupère les fonctions pour récupérer les données mondiale par année
   let functionToCall = _birth.getBirthsValuesByYear();
+
+  // Si le continent n'est pas vide, on affecte les données relative au continent par année
 
   if(_continent !== "") {
     functionToCall = _birth.getBirthsValuesByYearContinent(_continent);
   }
+
+  // On utilise la bonne fonction pour grouper les données par année
 
   functionToCall.then((births) => {
     const yearsGrouped = _birth.groupValueByColumn("year", births);
@@ -131,16 +164,27 @@ function _getBirthsValuesByYear(_birth, _continent="") {
     const values = Object.values(yearsGrouped);
 
     spinner.remove();
+    // On crée le graphique avec les valeurs en appelant la fonction définie plus haut
     createLineChart(years, values);
   });
 }
 
+/**
+Cette fonction récupère les données relatifs aux naissances et au continent
+_birth : 
+_continent : nom du contient que l'on veut visualiser, par défaut vide
+*/
 function _getBirthsByBankIncome(_birth, _continent="") {
   const ctx = document.getElementById('doughnutChart');
   const spinner = createSpinner();
   ctx.parentNode.appendChild(spinner);
+  
+  // Il existe 2 fonctions pour récupérer les données, une mondiale et une relative au continent
+	
+	// functionToCall recupère les fonctions pour récupérer les données mondiale
   let functionToCall = _birth.getBirthsByBankIncome();
 
+  // Si le continent n'est pas vide, on affecte les données relative au continent
   if(_continent !== "") {
       functionToCall = _birth.getBirthsByBankIncomeContinent(_continent);
   }
