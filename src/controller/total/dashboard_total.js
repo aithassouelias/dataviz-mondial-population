@@ -109,30 +109,32 @@ async function createBarChart(_birth,_death, _continent="") {
     try {
         const birthsByCountry = await functionToCallBirth;
         const deathsByCountry = await functionToCallDeath;
+        let naturalBalanceGrouped = [];
 
         const birthsGrouped = _birth.groupValueByColumn("country", birthsByCountry);
         const deathsGrouped = _death.groupValueByColumn("country_name", deathsByCountry);
 
         const countries = Object.keys(birthsGrouped);
 
-        const soldeNaturel = countries.map((country) => {
+        console.log("countriess", countries)
+
+        countries.map((country) => {
             const births = birthsGrouped[country] || 0;
             const deaths = deathsGrouped[country] || 0;
-            return births - deaths;
+            naturalBalanceGrouped.push([country, births - deaths]);
         });
 
-
-        const arrCountryGrouped = Object.entries(countries);
-
         /* Trier les pays de manière décroissante en fonction du nombre de naissances*/
-        arrCountryGrouped.sort((a, b) => b[1] - a[1]);
+        naturalBalanceGrouped.sort((a, b) => b[1] - a[1]);
 
-        let country = arrCountryGrouped.map((item) => item[0]);
-        let values = arrCountryGrouped.map((item) => item[1]);
+        let country = naturalBalanceGrouped.map((item) => item[0]);
+        let values = naturalBalanceGrouped.map((item) => item[1]);
 
-        /* Récupérer seulement les 5 premiers pays */
-        country.splice(5, country.length);
-        values.splice(5, values.length);
+        console.log("country", country)
+        console.log("values", values)
+
+        country.splice(10, country.length);
+        values.splice(10, values.length);
 
         spinner.remove();
 
@@ -142,11 +144,11 @@ async function createBarChart(_birth,_death, _continent="") {
             
             type: 'bar',
             data: {
-                labels: countries,
+                labels: country,
                 datasets: [
                     {
                         label: 'Solde naturel',
-                        data: soldeNaturel,
+                        data: values,
                         borderWidth: 1
                     },
                 ]
@@ -191,8 +193,14 @@ _continent : nom du contient que l'on veut visualiser, par défaut vide
 function _getKPIValues(_death, _birth,_continent="") {
 
 	const ctx = document.getElementById('KPI-Total-Naissances');
+    const ctx2 = document.getElementById('KPI-Total-Deces');
+    const ctxSolde = document.getElementById('KPI-Solde-Naturel');
 	const spinner = createSpinner();
+    const spinner2 = createSpinner();
+    const spinnerSolde = createSpinner();
 	ctx.parentNode.appendChild(spinner);
+    ctx2.parentNode.appendChild(spinner2);
+    ctxSolde.parentNode.appendChild(spinnerSolde);
 
 	// Il existe 2 fonctions pour récupérer les données, une mondiale et une relative au continent
 	
@@ -231,11 +239,13 @@ function _getKPIValues(_death, _birth,_continent="") {
     
         // KPI DECES
         KPITotalDeath = _death.groupValues(deaths);
+        spinner2.remove();
         const ctx = document.getElementById('KPI-Total-Deces');
         ctx.textContent = KPITotalDeath.toLocaleString();
 
         // KPI SOLDE NATUREL
         const KPISolde = KPITotalBirth - KPITotalDeath;
+        spinnerSolde.remove();
         const ctxSolde = document.getElementById('KPI-Solde-Naturel');
         ctxSolde.textContent = KPISolde.toLocaleString();
 
@@ -245,6 +255,89 @@ function _getKPIValues(_death, _birth,_continent="") {
     });
 }
 
+function createMap(_birth, _death) {
+    const url = 'https://unpkg.com/world-atlas@2.0.2/countries-110m.json'
+
+    _birth.getBirthsByCountry().then((totalBirths) => {
+        const birthsCountryGrouped = _birth.groupValueByColumn("country", totalBirths);
+        const birthsCountriesData = Object.keys(birthsCountryGrouped);
+
+        _death.getdeathsByCountry().then((totalDeaths) => {
+            const deathsCountryGrouped = _death.groupValueByColumn("country_name", totalDeaths);
+            const deathsCountriesData = Object.keys(deathsCountryGrouped);
+
+            fetch(url).then((result)=>result.json()).then((datapoint)=> {
+                const countries = ChartGeo.topojson.feature(datapoint, datapoint.objects.countries).features;
+
+
+                const totalNaturalBalance = parseInt(_birth.groupValues(totalBirths)) - parseInt(_death.groupValues(totalDeaths));
+
+                console.log(countries);
+
+                countries.forEach((country) => {
+                    const countryName = country.properties.name;
+
+                    if(birthsCountriesData.includes(countryName) && deathsCountriesData.includes(countryName)){
+                        const births = parseInt(birthsCountryGrouped[countryName]) || 0;
+                        const deaths = parseInt(deathsCountryGrouped[countryName]) || 0;
+
+                        const naturalBalance = births - deaths;
+
+                        country.properties.value = parseInt(naturalBalance);
+                    } else {
+                        country.properties.value = 0;
+                    }
+
+                });
+
+                const data = {
+                    labels : countries.map(country => country.properties.name),
+                    datasets : [{
+                        label : 'Countries',
+                        backgroundColor: context => {
+                            if (context.dataIndex == null) {
+                                return null;
+                            }
+                            const value = context.dataset.data[context.dataIndex];
+                            return `rgb(0, 0, ${value.value * 255})`;
+                        },
+                        data : countries.map(country => ({
+                                feature: country,
+                                value : country.properties.value
+                            })
+                        ),
+                    }]
+                };
+
+
+                const config = {
+                    type: 'choropleth',
+                    data,
+                    options : {
+                        showOutline : true,
+                        showGraticule : false,
+                        scales : {
+                            xy : {
+                                projection : 'equalEarth'
+                            }
+                        },
+                        plugins : {
+                            legend :{
+                                display : false
+                            }
+                        }
+                    }
+                };
+
+                const myChart = new Chart(
+                    document.getElementById('map'),
+                    config
+                );
+
+            })
+        });
+    });
+}
 
 function initializeData(continent="") {
 	const death = new Death();
@@ -258,5 +351,11 @@ function initializeData(continent="") {
 
     // Affichage du Bar Chart
     createBarChart(birth,death,continent)
-    
+
+    // Affichage de la map
+    createMap(birth,death)
+}
+
+function createPercent(value, total) {
+    return (value / total);
 }

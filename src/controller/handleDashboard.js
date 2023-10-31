@@ -11,19 +11,23 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-/*
-Cette fonction 
-*/
+/**
+ * Initialise la valeur du tableau de bord.
+ * 
+ * @param {string} value - La valeur à attribuer au tableau de bord.
+ */
 function initDashboardValue(value) {
     if(value !== "") {
         dashboard.value = value;
     }
 }
 
-/* 
-Cette fonction le chemin vers la bonne page HTML à partir d'un évènement sur la page
-event : informations récupérées lors d'un click sur l'écran
-*/
+/**
+ * Redirige vers une page HTML en fonction de l'événement de sélection d'un tableau de bord.
+ * 
+ * @param {Event} event - Les informations récupérées lors d'un événement de clic sur l'écran.
+ * @returns {string} Le nouveau chemin de la page HTML vers laquelle rediriger.
+ */
 
 function redirectTo(event) {
     // Tableau avec chaque élément du chemin de la page actuelle séparée par /
@@ -51,10 +55,12 @@ function redirectTo(event) {
     return window.location.href = newPath;
 }
 
-/* 
-Cette fonction retourne la valeur à ajouter dans le chemin pour les redirections
-value : la valeur de chaque dashboard dans la liste déroulante
-*/
+/**
+ * Retourne la valeur à ajouter dans le chemin pour les redirections.
+ * 
+ * @param {string} value - La valeur de chaque dashboard dans la liste déroulante.
+ * @returns {string} La valeur correspondante à ajouter dans le chemin pour la redirection.
+ */
 function switchToPath(value) {
     switch(value) {
         case "death": {
