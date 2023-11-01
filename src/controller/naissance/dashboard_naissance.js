@@ -96,7 +96,16 @@ function createDonutChart(_values, _bankIncome) {
   })
 }
 
+<<<<<<< HEAD
+/**
+Cette fonction crée le Bar Chart permettant de voir le nombre de naissance en fonction du pays
 
+_values : nombre de naissance
+_country : pays  
+*/
+=======
+
+>>>>>>> 15e44f5223df8d1047a0ce98485508ba8082b492
 function createBarChart(_country, _values) {
   const ctx = document.getElementById('BarChartHorizontal');
 
@@ -136,8 +145,13 @@ function createBarChart(_country, _values) {
 }
 
 /**
+<<<<<<< HEAD
+Cette fonction récupère les données relatifs aux naissances et au continent pour chaque année
+_birth : données naissance
+=======
 Cette fonction récupère les données relatifs aux naissances et au continent pour chaque année par année
 _birth : 
+>>>>>>> 15e44f5223df8d1047a0ce98485508ba8082b492
 _continent : nom du contient que l'on veut visualiser, par défaut vide
 */
 function _getBirthsValuesByYear(_birth, _continent="") {
@@ -170,8 +184,13 @@ function _getBirthsValuesByYear(_birth, _continent="") {
 }
 
 /**
+<<<<<<< HEAD
+Cette fonction récupère les données relatifs aux naissances par rapport au groupe de revenu
+_birth : données naissance
+=======
 Cette fonction récupère les données relatifs aux naissances et au continent
 _birth : 
+>>>>>>> 15e44f5223df8d1047a0ce98485508ba8082b492
 _continent : nom du contient que l'on veut visualiser, par défaut vide
 */
 function _getBirthsByBankIncome(_birth, _continent="") {
@@ -201,6 +220,11 @@ function _getBirthsByBankIncome(_birth, _continent="") {
   });
 }
 
+/**
+Cette fonction récupère les données relatifs aux naissances par pays
+_birth : données naissance
+_continent : nom du contient que l'on veut visualiser, par défaut vide
+*/
 function _getBirthsByCountry(_birth, _continent="") {
   const ctx = document.getElementById('BarChartHorizontal');
   const spinner = createSpinner();
@@ -231,6 +255,12 @@ function _getBirthsByCountry(_birth, _continent="") {
   });
 }
 
+
+/**
+Cette fonction récupère les données relatifs aux naissances
+_birth :données naissance 
+_continent : nom du contient que l'on veut visualiser, par défaut vide
+*/
 function _getBirthsValues(_birth, _continent="") {
   const ctx = document.getElementById('KPI-Total');
   const spinner = createSpinner();
@@ -249,6 +279,11 @@ function _getBirthsValues(_birth, _continent="") {
   });
 }
 
+/**
+Cette fonction récupère les données relatifs aux naissances par année
+_birth : données naissance
+_continent : nom du contient que l'on veut visualiser, par défaut vide
+*/
 function _getBirthsValuesByYearKpi(_birth, _continent="") {
   const ctx = document.getElementById('KPI-AVG');
   const spinner = createSpinner();
@@ -274,6 +309,11 @@ function _getBirthsValuesByYearKpi(_birth, _continent="") {
   });
 }
 
+/**
+Cette fonction crée le Map permettant de voir le nombre de naissance en fonction du pays
+
+_birth  :données naissance
+*/
 function createMap(_birth){
   _birth.getBirthsValues().then((totalBirths) => {
     _birth.getBirthsByCountry().then((births) => {
@@ -369,6 +409,12 @@ function initializeData(continent="") {
   createMap(birth);
 }
 
+/**
+ * cette fonction permet de calculer le pourcentage de nombre de naissance par rapport au total de naissance
+ * @param {*} values : nombre de naissance
+ * @param {*} total : total de naissance
+ * @returns 
+ */
 function createPercent(values, total) {
   return ((values / total) * 100);
 }
