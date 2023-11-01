@@ -1,12 +1,13 @@
 const mapUrl = 'https://unpkg.com/world-atlas@2.0.2/countries-110m.json'
 
 
-/*
-Cette fonction crée le line chart permettant de voir l'évolution solde naturel dans le temps
-
-_birth : données naissances
-_death : données décès
-_continent : continent que l'on veut visualiser, par défaut vide
+/**
+ * Crée un graphique linéaire pour visualiser l'évolution du solde naturel dans le temps.
+ *
+ * @param {Object} _birth - Données sur les naissances.
+ * @param {Object} _death - Données sur les décès.
+ * @param {string} [_continent=""] - Le continent à visualiser (par défaut, vide pour mondial).
+ * @returns {Promise<void>} - Le graphique linéaire affichant l'évolution du solde naturel.
 */
 async function createLineChart(_birth,_death, _continent="") {
 	const ctx = document.getElementById('linechart');
