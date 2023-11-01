@@ -96,16 +96,12 @@ function createDonutChart(_values, _bankIncome) {
   })
 }
 
-<<<<<<< HEAD
+
 /**
 Cette fonction crée le Bar Chart permettant de voir le nombre de naissance en fonction du pays
-
 _values : nombre de naissance
 _country : pays  
 */
-=======
-
->>>>>>> 15e44f5223df8d1047a0ce98485508ba8082b492
 function createBarChart(_country, _values) {
   const ctx = document.getElementById('BarChartHorizontal');
 
@@ -145,13 +141,9 @@ function createBarChart(_country, _values) {
 }
 
 /**
-<<<<<<< HEAD
-Cette fonction récupère les données relatifs aux naissances et au continent pour chaque année
-_birth : données naissance
-=======
+
 Cette fonction récupère les données relatifs aux naissances et au continent pour chaque année par année
 _birth : 
->>>>>>> 15e44f5223df8d1047a0ce98485508ba8082b492
 _continent : nom du contient que l'on veut visualiser, par défaut vide
 */
 function _getBirthsValuesByYear(_birth, _continent="") {
@@ -184,13 +176,8 @@ function _getBirthsValuesByYear(_birth, _continent="") {
 }
 
 /**
-<<<<<<< HEAD
-Cette fonction récupère les données relatifs aux naissances par rapport au groupe de revenu
-_birth : données naissance
-=======
 Cette fonction récupère les données relatifs aux naissances et au continent
 _birth : 
->>>>>>> 15e44f5223df8d1047a0ce98485508ba8082b492
 _continent : nom du contient que l'on veut visualiser, par défaut vide
 */
 function _getBirthsByBankIncome(_birth, _continent="") {
